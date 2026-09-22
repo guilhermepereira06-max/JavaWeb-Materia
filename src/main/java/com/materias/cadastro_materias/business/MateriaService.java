@@ -28,7 +28,7 @@ public class MateriaService {
         repository.deleteByProfessor(professor);
     }
 
-    public void atualizarMateriaPorProfessor(Integer id,Materia materia){
+    public void atualizarMateriaPorId(Integer id,Materia materia){
         Materia materiaEntity= repository.findById(id).orElseThrow(()->
                 new RuntimeException("Materia não encontrada"));
         Materia materiaAtualizado = Materia.builder()

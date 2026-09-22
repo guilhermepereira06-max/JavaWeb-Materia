@@ -26,6 +26,13 @@ public class MateriaController {
     }
     @DeleteMapping
     public ResponseEntity<Void> deletarMateriaPorProfessor(@RequestParam String professor){
+        materiaService.deletarMateriaPorProfessor(professor);
+        return ResponseEntity.ok().build();
+    }
+    @PutMapping
+    public ResponseEntity<Void>atualizarMateriaPorId(@RequestParam Integer id,
+                                                     @RequestBody Materia materia){
+        materiaService.atualizarMateriaPorId(id,materia);
         return ResponseEntity.ok().build();
     }
 }
