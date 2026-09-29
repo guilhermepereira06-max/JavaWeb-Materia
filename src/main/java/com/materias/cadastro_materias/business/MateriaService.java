@@ -38,6 +38,8 @@ public class MateriaService {
                         materiaEntity.getNome())
                 .nota_media(materia.getNota_media() != null ? materia.getNota_media() :
                         materiaEntity.getNota_media())
+                .aula_semana(materia.getAula_semana() != null ? materia.getAula_semana() :
+                        materiaEntity.getAula_semana())
                 .id(materiaEntity.getId())
                 .build();
 
