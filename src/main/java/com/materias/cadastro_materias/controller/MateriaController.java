@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/materia")
-@RequiredArgsConstructor
-public class MateriaController {
+@RequiredArgsConstructor//construtor
+public class MateriaController {//Crud
 
-    private final MateriaService materiaService;
+    private final MateriaService materiaService;//Injeção de dependencia-Atributo da classe-Atributo Objeto
 
     @PostMapping
     public ResponseEntity<Void>salvarMateria(@RequestBody Materia materia){
         materiaService.salvarMateria(materia);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().build();//aceita qualquer tipo de retorno
     }
     @GetMapping
     public ResponseEntity<Materia> buscarMateriaPorProfessor(@RequestParam String professor){
@@ -29,7 +29,7 @@ public class MateriaController {
         materiaService.deletarMateriaPorProfessor(professor);
         return ResponseEntity.ok().build();
     }
-    @PutMapping
+    @PutMapping//Atualiza TUDO(Todos os campos)
     public ResponseEntity<Void>atualizarMateriaPorId(@RequestParam Integer id,
                                                      @RequestBody Materia materia){
         materiaService.atualizarMateriaPorId(id,materia);

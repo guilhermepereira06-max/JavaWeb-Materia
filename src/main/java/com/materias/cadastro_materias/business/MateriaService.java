@@ -19,7 +19,6 @@ public class MateriaService {
     }
 
     public Materia buscarMateriaPorProfessor(String professor){
-
         return repository.findByProfessor(professor).orElseThrow(
                 () -> new RuntimeException("Professor não encontrado")
         );
