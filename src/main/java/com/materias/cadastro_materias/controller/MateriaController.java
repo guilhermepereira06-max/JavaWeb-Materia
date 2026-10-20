@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/materia")
@@ -21,6 +22,12 @@ public class MateriaController {//Crud
         return ResponseEntity.ok().build();//aceita qualquer tipo de retorno
     }
     @GetMapping
+    public ResponseEntity<List<Materia>> buscarTodasAsMaterias() {
+        return ResponseEntity.ok(materiaService.buscarTodas()); // Lembre-se de criar este método no Service
+    }
+
+    // 2. Buscar matéria específica por professor (GET /materia/busca?professor=Matheus)
+    @GetMapping("/busca")
     public ResponseEntity<Materia> buscarMateriaPorProfessor(@RequestParam String professor){
         return ResponseEntity.ok(materiaService.buscarMateriaPorProfessor(professor));
     }
