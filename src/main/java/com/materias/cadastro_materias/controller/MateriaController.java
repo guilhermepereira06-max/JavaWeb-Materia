@@ -23,7 +23,7 @@ public class MateriaController {//Crud
     }
     @GetMapping
     public ResponseEntity<List<Materia>> buscarTodasAsMaterias() {
-        return ResponseEntity.ok(materiaService.buscarTodas()); // Lembre-se de criar este método no Service
+        return ResponseEntity.ok(materiaService.buscarTodas()); // Lembre-se de criar este metodo no Service
     }
 
     // 2. Buscar matéria específica por professor (GET /materia/busca?professor=Matheus)
