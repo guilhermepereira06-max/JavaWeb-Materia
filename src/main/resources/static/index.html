@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATERIA.SYS - Gestão Escolar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="toast-container"></div>
+
+<!-- Modal Customizado Universal (Alertas, Erros e Confirmação) -->
+<div id="custom-modal" class="modal" style="display: none;">
+    <div class="modal-content" id="modal-box">
+        <h3 id="modal-title">Aviso</h3>
+        <p id="modal-message">Mensagem do sistema</p>
+        <div class="modal-buttons" id="modal-buttons">
+            <!-- Botões gerados dinamicamente via JS -->
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <header>
+        <img src="Logo.png" alt="MATERIA.SYS Logo">
+        <h1>MATERIA.SYS</h1>
+    </header>
+
+    <!-- Formulário de Cadastro e Edição -->
+    <div class="card">
+        <h2 id="form-title">Cadastrar Matéria</h2>
+        <form id="materia-form" novalidate>
+            <input type="hidden" id="materia-id">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="nome">Nome da Matéria</label>
+                    <input type="text" id="nome" placeholder="Ex: Matemática">
+                </div>
+                <div class="form-group">
+                    <label for="professor">Nome do Professor</label>
+                    <input type="text" id="professor" placeholder="Ex: Prof. Matheus">
+                </div>
+                <div class="form-group">
+                    <label for="nota_media">Nota Média (0 - 10)</label>
+                    <input type="number" id="nota_media" step="0.1" placeholder="Ex: 8.5">
+                </div>
+                <div class="form-group">
+                    <label for="aula_semana">Aulas por Semana (Inteiro)</label>
+                    <input type="number" id="aula_semana" step="1" placeholder="Ex: 4">
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="submit" class="btn-primary" id="btn-submit">Salvar</button>
+                <button type="button" class="btn-secondary" id="btn-cancel" onclick="limparFormulario()" style="display:none;">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Tabela de Listagem, Busca e Ordenação -->
+    <div class="card">
+        <h2>Matérias Cadastradas</h2>
+
+        <div class="search-box">
+            <input type="text" id="search-professor" oninput="filtrarEmTempoReal()" placeholder="Digite o nome do professor..." style="flex: 1;">
+            <button type="button" class="btn-secondary" onclick="limparBusca()">Limpar</button>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                <tr>
+                    <th onclick="ordenarPor('id')" class="sortable">ID <span id="sort-id">▲</span></th>
+                    <th onclick="ordenarPor('nome')" class="sortable">Matéria <span id="sort-nome">↕</span></th>
+                    <th onclick="ordenarPor('professor')" class="sortable">Professor <span id="sort-professor">↕</span></th>
+                    <th onclick="ordenarPor('nota_media')" class="sortable">Nota Média <span id="sort-nota_media">↕</span></th>
+                    <th onclick="ordenarPor('aula_semana')" class="sortable">Aulas/Semana <span id="sort-aula_semana">↕</span></th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody id="tabela-body">
+                <!-- Preenchido via JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -4,7 +4,7 @@ import com.materias.cadastro_materias.infrastructure.entitys.Materia;
 import com.materias.cadastro_materias.infrastructure.repository.MateriaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List; // Importação da Lista adicionada
+import java.util.List;
 
 @Service
 public class MateriaService {
@@ -34,18 +34,15 @@ public class MateriaService {
     }
 
     public void atualizarMateriaPorId(Integer id, Materia materia){
-        Materia materiaEntity= repository.findById(id).orElseThrow(()->
+        Materia materiaEntity = repository.findById(id).orElseThrow(() ->
                 new RuntimeException("Materia não encontrada"));
+
         Materia materiaAtualizado = Materia.builder()
-                .professor(materia.getProfessor() != null ? materia.getProfessor() :
-                        materiaEntity.getProfessor())
-                .nome(materia.getNome() != null ? materia.getNome() :
-                        materiaEntity.getNome())
-                .nota_media(materia.getNota_media() != null ? materia.getNota_media() :
-                        materiaEntity.getNota_media())
-                .aula_semana(materia.getAula_semana() != null ? materia.getAula_semana() :
-                        materiaEntity.getAula_semana())
                 .id(materiaEntity.getId())
+                .nome(materia.getNome() != null ? materia.getNome() : materiaEntity.getNome())
+                .professor(materia.getProfessor() != null ? materia.getProfessor() : materiaEntity.getProfessor())
+                .notaMedia(materia.getNotaMedia() != null ? materia.getNotaMedia() : materiaEntity.getNotaMedia())
+                .aulaSemana(materia.getAulaSemana() != null ? materia.getAulaSemana() : materiaEntity.getAulaSemana())
                 .build();
 
         repository.saveAndFlush(materiaAtualizado);
