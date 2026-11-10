@@ -346,3 +346,47 @@ function limparFormulario() {
     document.getElementById('btn-submit').innerText = 'Salvar';
     document.getElementById('btn-cancel').style.display = 'none';
 }
+// ============================================================================
+// TOUR INTERATIVO COM DRIVER.JS
+// ============================================================================
+function iniciarTour() {
+    const driver = window.driver.js.driver;
+
+    const driverObj = driver({
+        showProgress: true,
+        nextBtnText: 'Próximo →',
+        prevBtnText: '← Anterior',
+        doneBtnText: 'Concluir',
+        steps: [
+            {
+                element: '#header-sistema',
+                popover: {
+                    title: 'Bem-vindo ao MATERIA.SYS',
+                    description: 'Este é o sistema de gestão escolar integrado com o backend Spring Boot.'
+                }
+            },
+            {
+                element: '#card-cadastro',
+                popover: {
+                    title: 'Cadastrar e Editar Matérias',
+                    description: 'Utilize este formulário para registrar novas matérias ou atualizar existentes. O sistema valida dados incompletos ou notas inválidas automaticamente.'
+                }
+            },
+            {
+                element: '#box-busca',
+                popover: {
+                    title: 'Busca Instantânea por Inicial',
+                    description: 'Ao digitar a letra inicial do professor (ex: "S"), os resultados são filtrados em tempo real na tabela.'
+                }
+            },
+            {
+                element: '#tabela-container',
+                popover: {
+                    title: 'Tabela Dinâmica e Ordenação',
+                    description: 'Clique em qualquer cabeçalho da tabela (ID, Matéria, Nota Média) para ordenar os dados em ordem crescente ou decrescente.'
+                }
+            }
+        ]
+    });
+    driverObj.drive();
+}

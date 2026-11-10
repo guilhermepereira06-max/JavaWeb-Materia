@@ -4,52 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MATERIA.SYS - Gestão Escolar</title>
+
+    <!-- Estilos do Driver.js para o Tour Interativo -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.3.1/dist/driver.css">
+
+    <!-- Estilos da aplicação -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- Contentor para os avisos temporários (Toasts) -->
 <div id="toast-container"></div>
 
-<!-- Modal Customizado Universal (Alertas, Erros e Confirmação) -->
+<!-- Modal Customizado Universal -->
 <div id="custom-modal" class="modal" style="display: none;">
     <div class="modal-content" id="modal-box">
         <h3 id="modal-title">Aviso</h3>
         <p id="modal-message">Mensagem do sistema</p>
-        <div class="modal-buttons" id="modal-buttons">
-            <!-- Botões gerados dinamicamente via JS -->
-        </div>
+        <div class="modal-buttons" id="modal-buttons"></div>
     </div>
 </div>
 
 <div class="container">
-    <header>
+    <!-- Cabeçalho -->
+    <header id="header-sistema">
         <img src="Logo.png" alt="MATERIA.SYS Logo">
         <h1>MATERIA.SYS</h1>
     </header>
 
-    <!-- Formulário de Cadastro e Edição -->
-    <div class="card">
+    <!-- Botão para disparar o Tour Interativo (Posicionado acima do Card de Cadastro) -->
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 15px;">
+        <button type="button" class="btn-primary" onclick="iniciarTour()" style="display: flex; align-items: center; gap: 8px;">
+             Iniciar Tour pelo Sistema
+        </button>
+    </div>
+
+    <!-- Card 1: Formulário de Cadastro e Edição de Matérias -->
+    <div class="card" id="card-cadastro">
         <h2 id="form-title">Cadastrar Matéria</h2>
+
         <form id="materia-form" novalidate>
             <input type="hidden" id="materia-id">
+
             <div class="form-grid">
                 <div class="form-group">
                     <label for="nome">Nome da Matéria</label>
                     <input type="text" id="nome" placeholder="Ex: Matemática">
                 </div>
+
                 <div class="form-group">
                     <label for="professor">Nome do Professor</label>
                     <input type="text" id="professor" placeholder="Ex: Prof. Matheus">
                 </div>
+
                 <div class="form-group">
                     <label for="nota_media">Nota Média (0 - 10)</label>
                     <input type="number" id="nota_media" step="0.1" placeholder="Ex: 8.5">
                 </div>
+
                 <div class="form-group">
                     <label for="aula_semana">Aulas por Semana (Inteiro)</label>
                     <input type="number" id="aula_semana" step="1" placeholder="Ex: 4">
                 </div>
             </div>
+
             <div class="btn-group">
                 <button type="submit" class="btn-primary" id="btn-submit">Salvar</button>
                 <button type="button" class="btn-secondary" id="btn-cancel" onclick="limparFormulario()" style="display:none;">Cancelar</button>
@@ -57,16 +75,16 @@
         </form>
     </div>
 
-    <!-- Tabela de Listagem, Busca e Ordenação -->
-    <div class="card">
+    <!-- Card 2: Tabela de Listagem, Busca em Tempo Real e Ordenação -->
+    <div class="card" id="card-tabela">
         <h2>Matérias Cadastradas</h2>
 
-        <div class="search-box">
+        <div class="search-box" id="box-busca">
             <input type="text" id="search-professor" oninput="filtrarEmTempoReal()" placeholder="Digite o nome do professor..." style="flex: 1;">
             <button type="button" class="btn-secondary" onclick="limparBusca()">Limpar</button>
         </div>
 
-        <div class="table-container">
+        <div class="table-container" id="tabela-container">
             <table>
                 <thead>
                 <tr>
@@ -78,14 +96,15 @@
                     <th>Ações</th>
                 </tr>
                 </thead>
-                <tbody id="tabela-body">
-                <!-- Preenchido via JS -->
-                </tbody>
+                <tbody id="tabela-body"></tbody>
             </table>
         </div>
     </div>
 </div>
 
+<!-- Script do Driver.js (deve ser carregado antes do script.js) -->
+<script src="https://cdn.jsdelivr.net/npm/driver.js@1.3.1/dist/driver.js.iife.js"></script>
+<!-- Script Principal da Aplicação -->
 <script src="script.js"></script>
 </body>
 </html>
